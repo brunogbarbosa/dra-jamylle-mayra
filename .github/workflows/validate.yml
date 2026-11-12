@@ -19,3 +19,16 @@ jobs:
       - run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+          VERCEL_PROJECT_PRODUCTION_URL: og-preview.example.com
+      - name: Verify sharing metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+
+          const html = readFileSync('.next/server/app/index.html', 'utf8');
+          const imageUrl = 'https://og-preview.example.com/images/og-jamylle.jpg';
+          assert.ok(html.includes(`property="og:image" content="${imageUrl}"`), 'Missing absolute Open Graph image URL');
+          assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), 'Missing large sharing card');
+          assert.ok(html.includes(`name="twitter:image" content="${imageUrl}"`), 'Missing Twitter image URL');
+          NODE
