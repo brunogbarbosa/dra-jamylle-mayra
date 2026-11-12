@@ -1,0 +1,118 @@
+/* Shared brand tokens: every chapter, decoration and control uses this palette. */
+:root {
+  --paper: #f5f0ea;
+  --white: #fcfaf7;
+  --ink: #292522;
+  --dark: #191817;
+  --black: #000000;
+  --taupe: #9a7c69;
+  --champagne: #d9bfa6;
+  --muted: #756b64;
+  --soft: #e7ddd3;
+  --surface: #f0e7df;
+  --photo: #e9dfdd;
+  --rose: var(--taupe);
+  --rose-deep: var(--ink);
+  --rose-light: var(--champagne);
+  --ivory: var(--paper);
+  --wine: var(--ink);
+  --line: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+/* The nav has no painted surface, including after scroll. */
+.header, .header:not(.scrolled), .header.scrolled {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 30;
+  height: 104px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  color: var(--paper);
+  background: none;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.header .brand-monogram, .header .brand-type small { color: var(--champagne); }
+.header .brand-type { font-size: 12px; }
+.header .brand-type small { font-size: 8px; }
+.desktop-nav { display: flex; justify-content: center; gap: clamp(22px, 2.4vw, 44px); }
+.desktop-nav a { white-space: nowrap; }
+.nav-appointment { justify-self: end; display: inline-flex; align-items: center; gap: 20px; min-height: 48px; padding: 12px 20px; border-radius: 99px; background: var(--champagne); color: var(--dark); font-size: 12px; transition: background .3s, transform .3s; }
+.nav-appointment:hover { background: var(--paper); transform: translateY(-2px); }
+.header .mobile-menu { display: none; color: var(--paper); background: none; backdrop-filter: none; border-color: color-mix(in srgb, var(--paper) 55%, transparent); }
+.campaign { background: var(--dark); color: var(--paper); }
+.campaign-original { filter: none; transform: none; }
+.campaign::after { background: none; mix-blend-mode: normal; }
+.campaign h1 { color: var(--paper); }
+.campaign-title-line:nth-child(3), .campaign-kicker, .campaign-topline, .campaign-editorial em { color: var(--champagne); }
+.campaign-subtitle { color: var(--paper); border-color: var(--champagne); }
+.campaign-cta { background: var(--champagne); border-color: var(--champagne); color: var(--dark); }
+.campaign-cta:hover, .campaign-cta:focus-visible { background: var(--paper); }
+.campaign-seal { color: var(--champagne); }
+.campaign-metrics, .campaign-signature { color: var(--champagne); }
+.campaign-organic { border-color: color-mix(in srgb, var(--champagne) 27%, transparent); }
+.campaign-organic-two { border-color: color-mix(in srgb, var(--champagne) 15%, transparent); }
+
+/* Desktop portrait begins at y=0 behind the nav; its face keeps the original light. */
+@media (min-width: 701px) {
+  .campaign-portrait { inset: 0 0 0 35%; background: none; mask-image: linear-gradient(90deg, transparent, black 44%); }
+  .campaign-original { object-fit: cover; object-position: center top; }
+  .campaign::before { background: radial-gradient(ellipse 31% 20% at 39% 0%, var(--dark) 5%, transparent 100%), linear-gradient(90deg, var(--dark) 0%, var(--dark) 29%, color-mix(in srgb, var(--dark) 98%, transparent) 36%, color-mix(in srgb, var(--dark) 85%, transparent) 44%, color-mix(in srgb, var(--dark) 53%, transparent) 51%, color-mix(in srgb, var(--dark) 16%, transparent) 60%, transparent 70%), linear-gradient(0deg, color-mix(in srgb, var(--dark) 75%, transparent), transparent 22%); }
+  .campaign-inner { padding-top: 136px; }
+  .campaign-copy { width: 64%; }
+  .campaign h1 { font-size: clamp(78px, 7.55vw, 142px); }
+  .campaign-editorial { top: auto; bottom: 275px; right: 5%; color: var(--paper); }
+  .essence-smile { width: 47%; right: 0; top: 0; height: 100%; aspect-ratio: auto; border-radius: 48% 0 0 46%; }
+  .essence-smile img { object-fit: contain; object-position: center top; }
+}
+.essence-editorial { background: var(--paper); }
+.essence-values { background: var(--soft); }
+.essence-value { background: color-mix(in srgb, var(--white) 85%, transparent); }
+.essence-value-icon { background: var(--champagne); color: var(--ink); }
+.essence-editorial-description, .essence-editorial-prelude, .essence-value p { color: var(--muted); }
+.essence-title-mask em { color: var(--taupe); }
+.gallery-chapter, .closing-chapter, .footer, .result-dialog { background: var(--dark); }
+.gallery-photo, .comparison { background: var(--ink); }
+.gallery-heading p, .footer-main > div { color: var(--soft); }
+.ritual-chapter { background: var(--paper); }
+.social-chapter { background: var(--soft); }
+.closing-chapter { background: radial-gradient(circle at 80% 20%, var(--ink), var(--dark) 58%); }
+.menu-dialog { background: var(--paper); }
+.viewer-note { color: var(--champagne); }
+.gallery-photo { aspect-ratio: 1; }
+.gallery-photo img, .viewer-stage > img { object-fit: contain; }
+.comparison { max-width: 100%; max-height: 100%; width: auto; height: 100%; position: relative; }
+.comparison.vertical .compare-half { background-size: 100% 200%; }
+.comparison.vertical .after { background-position: bottom; }
+.comparison.vertical .before { background-position: top; }
+.viewer-range input { accent-color: var(--champagne); min-height: 44px; }
+.menu-dialog nav a, .viewer-icon { min-height: 44px; }
+
+@media (max-width: 1000px) and (min-width: 701px) {
+  .header { gap: 20px; padding-inline: 4%; }
+  .header .brand-type { font-size: 10px; }
+  .header .brand-monogram { font-size: 50px; }
+  .desktop-nav { gap: 16px; font-size: 11px; }
+  .nav-appointment { padding-inline: 14px; gap: 9px; font-size: 10px; }
+}
+@media (max-width: 700px) {
+  .header, .header:not(.scrolled) { height: 86px; padding-inline: 6%; display: flex; justify-content: space-between; gap: 12px; }
+  .header .brand-type { font-size: 10px; }
+  .header .brand-type small { font-size: 7px; }
+  .desktop-nav, .nav-appointment { display: none; }
+  .header .mobile-menu { display: grid; }
+  .campaign-portrait { inset: 0 0 28% 0; }
+  .campaign-original { object-fit: cover; object-position: center 22%; filter: none; }
+  .campaign::before { background: linear-gradient(180deg, color-mix(in srgb, var(--dark) 68%, transparent) 0%, transparent 20%, color-mix(in srgb, var(--dark) 8%, transparent) 35%, color-mix(in srgb, var(--dark) 86%, transparent) 58%, var(--dark) 74%, var(--dark) 100%); }
+  .campaign::after { background: linear-gradient(90deg, color-mix(in srgb, var(--dark) 35%, transparent), transparent 38%); }
+  .campaign h1 { font-size: clamp(56px, 13.4vw, 92px); }
+  .campaign-kicker { font-size: 8px; letter-spacing: .10em; }
+  .campaign-inner { padding-top: 102px; }
+  .essence-smile img { object-fit: contain; object-position: top center; }
+  .gallery-heading p { max-width: 30rem; }
+}
+@media (max-width: 390px) { .campaign h1 { font-size: 13.1vw; } }
+@media (prefers-reduced-motion: reduce) { .nav-appointment:hover { transform: none; } }

@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+dist/
+.env*
+!.env.example
+*.tsbuildinfo
+*.log
+.DS_Store
+.vercel/
+work/
+outputs/
+*.zip
+
+.npm-cache/
+
+# Reference-only assets from the retained source, replaced by the supplied photos.
+public/images/giovanna-*.webp
+public/images/resultado-*.webp
+app/giovanna.css
